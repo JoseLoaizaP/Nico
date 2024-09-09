@@ -1,13 +1,24 @@
 package structures;
 
-import model.Casilla;
+import exceptions.CofreLlenoException;
 import model.Cultivo;
-
 
 public class SimpleLinkedListCasillas {
     private NodeCasilla first;
+    private int size;
+    private static final int MAX_CASILLAS = 50;
 
-    public void add(String id,  Cultivo cultivo) {
+    public SimpleLinkedListCasillas() {
+        this.first = null;
+        this.size = 0;
+    }
+
+    public void add(String id,  Cultivo cultivo) throws CofreLlenoException {
+
+        if (size >= MAX_CASILLAS) {
+            throw new CofreLlenoException("El cofre ya contiene " + MAX_CASILLAS + " casillas.");
+        }
+
         NodeCasilla node = new NodeCasilla(id, cultivo);
 
         // Caso Base -> La lista esta vacia

@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.CofreLlenoException;
 import structures.SimpleLinkedListCasillas;
 
 public class Cofre {
@@ -15,17 +16,34 @@ public class Cofre {
     public void addCultivoInCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
 
         if(estacion.equals("Primavera")){
-            CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
+            try {
+                CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
+                casilla.add(identificador, cultivo);
+            }catch (CofreLlenoException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+            }
 
         } else if (estacion.equals("Verano")) {
-            CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-            casilla.add(identificador, cultivo);
+            try {
+                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
+                casilla.add(identificador, cultivo);
+            }catch (CofreLlenoException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+            }
         }else if (estacion.equals("Otoño")) {
-            CultivoOtoño cultivo = new CultivoOtoño(nombre, diasCrecimiento);
-            casilla.add(identificador, cultivo);
+            try {
+                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
+                casilla.add(identificador, cultivo);
+            }catch (CofreLlenoException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+            }
         }else if (estacion.equals("Invierno")) {
-            CultivoInvierno cultivo = new CultivoInvierno(nombre, diasCrecimiento);
-            casilla.add(identificador, cultivo);
+            try {
+                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
+                casilla.add(identificador, cultivo);
+            }catch (CofreLlenoException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+            }
         }
 
     }

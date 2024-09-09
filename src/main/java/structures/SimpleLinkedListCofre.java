@@ -4,6 +4,7 @@ import model.Cofre;
 
 public class SimpleLinkedListCofre {
     private NodeCofre first;
+
     public void add(String id,  Cofre cofre){
         NodeCofre node = new NodeCofre(id, cofre);
 
