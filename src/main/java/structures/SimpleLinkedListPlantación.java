@@ -1,11 +1,25 @@
 package structures;
 
 
+import exceptions.PlantacionLlenaException;
 import model.Plantacion;
 
 public class SimpleLinkedListPlantación {
     private NodePlantacion first;
-    public void add(String id,  Plantacion plantacion){
+    private final int MAX_PARCELA = 5;
+    private int size;
+
+    public SimpleLinkedListPlantación() {
+        this.first = null;
+        this.size = 0;
+    }
+
+    public void add(String id,  Plantacion plantacion) throws PlantacionLlenaException {
+
+        if (size >= MAX_PARCELA) {
+            throw new PlantacionLlenaException("La plantación ya contiene " + MAX_PARCELA + " parcelas.");
+        }
+
         NodePlantacion node = new NodePlantacion(id, plantacion);
 
         // Caso Base -> La lista esta vacia
@@ -27,6 +41,7 @@ public class SimpleLinkedListPlantación {
                 current.setNext(node);
             }
         }
+        size++;
     }
 
     // buscar por nombre de persona | value = name

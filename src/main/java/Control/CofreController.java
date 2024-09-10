@@ -14,4 +14,5 @@ public class CofreController {
         Cofre cofre = new Cofre(cofreId);
         cofres.add(cofreId, cofre);
     }
+
 }

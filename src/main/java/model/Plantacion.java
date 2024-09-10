@@ -1,5 +1,7 @@
 package model;
 
+import exceptions.CasillaLlenaException;
+import exceptions.ParcelaLlenaException;
 import structures.SimpleLinkedListParcela;
 
 public class Plantacion {
@@ -10,20 +12,41 @@ public class Plantacion {
         this.plantacionId = plantacionId;
     }
 
-    public void addCultivoInCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
+    public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
 
         if(estacion.equals("Primavera")){
             CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
+            try{
+                parcela.add(identificador, cultivo);
+            }catch(ParcelaLlenaException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+
+            }
 
         } else if (estacion.equals("Verano")) {
             CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-            parcela.add(identificador, cultivo);
+            try{
+                parcela.add(identificador, cultivo);
+            }catch(ParcelaLlenaException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+
+            }
         }else if (estacion.equals("Otoño")) {
             CultivoOtoño cultivo = new CultivoOtoño(nombre, diasCrecimiento);
-            parcela.add(identificador, cultivo);
+            try{
+                parcela.add(identificador, cultivo);
+            }catch(ParcelaLlenaException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+
+            }
         }else if (estacion.equals("Invierno")) {
             CultivoInvierno cultivo = new CultivoInvierno(nombre, diasCrecimiento);
-            parcela.add(identificador, cultivo);
+            try{
+                parcela.add(identificador, cultivo);
+            }catch(ParcelaLlenaException e){
+                System.out.println("Error al agregar cultivo: " + e.getMessage());
+
+            }
         }
 
     }

@@ -1,11 +1,27 @@
 package structures;
+
+import exceptions.ParcelaLlenaException;
 import model.Cultivo;
 
 public class SimpleLinkedListParcela {
     private NodeCultivo first;
+    private int size;
+    private static final int MAX_CULTIVOS = 25;
 
-    public void add(String id,  Cultivo cultivo) {
+
+    public SimpleLinkedListParcela() {
+        this.first = null;
+        this.size = 0;
+    }
+
+    public void add(String id,  Cultivo cultivo) throws ParcelaLlenaException {
+
+        if (size >= MAX_CULTIVOS) {
+            throw new ParcelaLlenaException("La casilla ya está llena y no puede almacenar más de " + MAX_CULTIVOS + " cultivos.");
+        }
+
         NodeCultivo node = new NodeCultivo(id, cultivo);
+
 
         if(first == null){
             first = node;
@@ -25,6 +41,7 @@ public class SimpleLinkedListParcela {
                 current.setNext(node);
             }
         }
+        size++;
     }
     // buscar por nombre de persona | value = name
     public NodeCultivo search(String value){
