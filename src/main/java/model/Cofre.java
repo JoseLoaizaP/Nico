@@ -1,6 +1,6 @@
 package model;
 
-import exceptions.CofreLlenoException;
+import exceptions.CasillaLlenaException;
 import structures.SimpleLinkedListCasillas;
 
 public class Cofre {
@@ -19,7 +19,7 @@ public class Cofre {
             try {
                 CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
                 casilla.add(identificador, cultivo);
-            }catch (CofreLlenoException e){
+            }catch (CasillaLlenaException e){
                 System.out.println("Error al agregar cultivo: " + e.getMessage());
             }
 
@@ -27,21 +27,21 @@ public class Cofre {
             try {
                 CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
                 casilla.add(identificador, cultivo);
-            }catch (CofreLlenoException e){
+            }catch (CasillaLlenaException e){
                 System.out.println("Error al agregar cultivo: " + e.getMessage());
             }
         }else if (estacion.equals("Otoño")) {
             try {
                 CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
                 casilla.add(identificador, cultivo);
-            }catch (CofreLlenoException e){
+            }catch (CasillaLlenaException e){
                 System.out.println("Error al agregar cultivo: " + e.getMessage());
             }
         }else if (estacion.equals("Invierno")) {
             try {
                 CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
                 casilla.add(identificador, cultivo);
-            }catch (CofreLlenoException e){
+            }catch (CasillaLlenaException e){
                 System.out.println("Error al agregar cultivo: " + e.getMessage());
             }
         }
