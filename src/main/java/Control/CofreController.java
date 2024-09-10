@@ -5,6 +5,7 @@ import structures.SimpleLinkedListCofre;
 
 public class CofreController {
     private SimpleLinkedListCofre cofres;
+    private Cofre cofre;
 
     public CofreController(){
         cofres = new SimpleLinkedListCofre();
@@ -14,5 +15,10 @@ public class CofreController {
         Cofre cofre = new Cofre(cofreId);
         cofres.add(cofreId, cofre);
     }
+
+    public void addCultivotoCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
+        cofre.addCultivoInCofre(nombre, diasCrecimiento, estacion, identificador);
+    }
+
 
 }
