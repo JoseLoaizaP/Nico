@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.CasillaLlenaException;
+import structures.NodeCasilla;
 import structures.SimpleLinkedListCasillas;
 
 public class Cofre {

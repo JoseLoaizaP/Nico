@@ -68,6 +68,25 @@ public class SimpleLinkedListParcela {
         return found;
     }
 
+    public String listarParcelas() {
+        if (first == null) {
+            return "La casilla está vacía.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        NodeCultivo current = first;
+
+        while (current != null) {
+            sb.append(current.getValueCultivo().getName());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+
+        return sb.toString();
+    }
+
     public NodeCultivo getFirst() {
         return first;
     }

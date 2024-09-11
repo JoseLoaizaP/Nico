@@ -69,6 +69,25 @@ public class SimpleLinkedListPlantación {
         return found;
     }
 
+    public String listarPlantacion() {
+        if (first == null) {
+            return "La casilla está vacía.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        NodePlantacion current = first;
+
+        while (current != null) {
+            sb.append(current.getPlantacion().getPlantacionId());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+
+        return sb.toString();
+    }
+
     public NodePlantacion getFirst() {
         return first;
     }

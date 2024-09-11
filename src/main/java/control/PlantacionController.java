@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 
 import exceptions.PlantacionLlenaException;
@@ -6,13 +6,16 @@ import model.Plantacion;
 import structures.SimpleLinkedListPlantación;
 
 
-public class CultivoController {
+public class PlantacionController {
     private SimpleLinkedListPlantación plantaciones;
     private Plantacion plantacion;
 
-    public CultivoController(){
+
+
+    public PlantacionController(){
          plantaciones = new SimpleLinkedListPlantación();
     }
+
 
     public void addPlantacion(String plantacionId){
         Plantacion plantacion = new Plantacion(plantacionId);

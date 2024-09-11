@@ -12,6 +12,7 @@ public class Plantacion {
         this.plantacionId = plantacionId;
     }
 
+
     public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
 
         if(estacion.equals("Primavera")){

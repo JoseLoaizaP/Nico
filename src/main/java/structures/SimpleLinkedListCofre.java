@@ -54,6 +54,26 @@ public class SimpleLinkedListCofre {
         return found;
     }
 
+    public String listarCofres() {
+        if (first == null) {
+            return "La lista está vacía.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        NodeCofre current = first;
+
+        while (current != null) {
+            sb.append(current.getCofre().getCofreId());  // Añadir el ID del cofre actual
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+
+        return sb.toString();
+    }
+
+
     public NodeCofre getFirst() {
         return first;
     }

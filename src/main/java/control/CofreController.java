@@ -1,4 +1,4 @@
-package Control;
+package control;
 
 import model.Cofre;
 import structures.SimpleLinkedListCofre;
@@ -21,7 +21,7 @@ public class CofreController {
         cofre.addCultivoInCofre(nombre, diasCrecimiento, estacion, identificador);
     }
 
-    public SimpleLinkedListCofre getPeople() {
+    public SimpleLinkedListCofre getCofres() {
         return cofres;
     }
 

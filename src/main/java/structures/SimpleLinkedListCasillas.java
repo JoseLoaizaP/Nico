@@ -66,4 +66,24 @@ public class SimpleLinkedListCasillas {
         }
         return found;
     }
+
+    public String listarCasillas() {
+        if (first == null) {
+            return "La casilla está vacía.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        NodeCasilla current = first;
+
+        while (current != null) {
+            sb.append(current.getCultivo().getName());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+
+        return sb.toString();
+    }
+
 }
