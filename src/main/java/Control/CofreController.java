@@ -3,6 +3,7 @@ package Control;
 import model.Cofre;
 import structures.SimpleLinkedListCofre;
 
+
 public class CofreController {
     private SimpleLinkedListCofre cofres;
     private Cofre cofre;
@@ -18,6 +19,10 @@ public class CofreController {
 
     public void addCultivotoCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
         cofre.addCultivoInCofre(nombre, diasCrecimiento, estacion, identificador);
+    }
+
+    public SimpleLinkedListCofre getPeople() {
+        return cofres;
     }
 
 

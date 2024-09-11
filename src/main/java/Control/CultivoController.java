@@ -1,9 +1,7 @@
 package Control;
 
 
-import exceptions.ParcelaLlenaException;
 import exceptions.PlantacionLlenaException;
-import model.Cofre;
 import model.Plantacion;
 import structures.SimpleLinkedListPlantación;
 
@@ -27,6 +25,10 @@ public class CultivoController {
 
     public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
         plantacion.addCultivoInPlantacion(nombre, diasCrecimiento, estacion, identificador);
+    }
+
+    public SimpleLinkedListPlantación getPeople() {
+        return plantaciones;
     }
 
 }
