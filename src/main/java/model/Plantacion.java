@@ -1,55 +1,28 @@
 package model;
 
-import exceptions.CasillaLlenaException;
-import exceptions.ParcelaLlenaException;
-import structures.SimpleLinkedListParcela;
+
+import structures.SimpleLinkedListCultivos;
+import structures.SimpleLinkedListPlantación;
 
 public class Plantacion {
-    private SimpleLinkedListParcela parcela;
+    private SimpleLinkedListCultivos cultivos;
     private String plantacionId;
     public Plantacion(String plantacionId){
-        parcela = new SimpleLinkedListParcela();
+        cultivos = new SimpleLinkedListCultivos();
         this.plantacionId = plantacionId;
     }
 
 
-    public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
-
+    public void addCultivoToPlantacion(String nombre, int diasCrecimiento, String estacion){
         if(estacion.equals("Primavera")){
             CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
-            try{
-                parcela.add(identificador, cultivo);
-            }catch(ParcelaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-
-            }
-
         } else if (estacion.equals("Verano")) {
             CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-            try{
-                parcela.add(identificador, cultivo);
-            }catch(ParcelaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-
-            }
         }else if (estacion.equals("Otoño")) {
             CultivoOtoño cultivo = new CultivoOtoño(nombre, diasCrecimiento);
-            try{
-                parcela.add(identificador, cultivo);
-            }catch(ParcelaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-
-            }
         }else if (estacion.equals("Invierno")) {
             CultivoInvierno cultivo = new CultivoInvierno(nombre, diasCrecimiento);
-            try{
-                parcela.add(identificador, cultivo);
-            }catch(ParcelaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-
-            }
         }
-
     }
 
     public String getPlantacionId() {

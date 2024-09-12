@@ -1,7 +1,9 @@
 package control;
 
 import model.Cofre;
+import model.Cultivo;
 import structures.SimpleLinkedListCofre;
+import structures.SimpleLinkedListPlantación;
 
 
 public class CofreController {
@@ -17,12 +19,16 @@ public class CofreController {
         cofres.add(cofreId, cofre);
     }
 
-    public void addCultivotoCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
-        cofre.addCultivoInCofre(nombre, diasCrecimiento, estacion, identificador);
+    public void addCultivotoCofre(Cultivo cultivo, String identificador){
+        cofre.addCultivoInCofre(identificador, cultivo);
     }
 
     public SimpleLinkedListCofre getCofres() {
         return cofres;
+    }
+
+    public String listarCofres(){
+        return getCofres().listarCofres();
     }
 
 

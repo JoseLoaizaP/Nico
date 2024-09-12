@@ -1,37 +1,44 @@
 package model;
 
-import structures.SimpleLinkedListParcela;
 
+import exceptions.CasillaLlenaException;
+import exceptions.CultivoLlenoException;
+import structures.SimpleLinkedListCultivos;
 
 public class Casilla {
-    private int numCasilla;
-    private SimpleLinkedListParcela cultivos;
+
+    private SimpleLinkedListCultivos cultivos;
     private Cultivo cultivo;
 
-    public Casilla(int numParcela, Cultivo cultivo){
-        this.numCasilla = numParcela;
+    public Casilla(Cultivo cultivo){
+
         this.cultivo = cultivo;
 
-        cultivos = new SimpleLinkedListParcela();
+        cultivos = new SimpleLinkedListCultivos();
     }
 
-    public void addCultivoToCasilla(String nombre, int diasCrecimiento, String estacion){
-        if(estacion.equals("Primavera")){
-            CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
-        } else if (estacion.equals("Verano")) {
-            CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-        }else if (estacion.equals("Otoño")) {
-            CultivoOtoño cultivo = new CultivoOtoño(nombre, diasCrecimiento);
-        }else if (estacion.equals("Invierno")) {
-            CultivoInvierno cultivo = new CultivoInvierno(nombre, diasCrecimiento);
+    public void addCultivoToCasilla(Cultivo cultivo, String identificador){
+        try{
+            cultivos.add(identificador, cultivo);
+        }
+        catch(CultivoLlenoException e){
+            System.out.println("Error al agregar cultivo: " + e.getMessage());
         }
     }
 
-    public int getNumCasilla() {
-        return numCasilla;
+    public SimpleLinkedListCultivos getCultivos() {
+        return cultivos;
     }
 
-    public void setNumCasilla(int numParcela) {
-        this.numCasilla = numParcela;
+    public void setCultivos(SimpleLinkedListCultivos cultivos) {
+        this.cultivos = cultivos;
+    }
+
+    public Cultivo getCultivo() {
+        return cultivo;
+    }
+
+    public void setCultivo(Cultivo cultivo) {
+        this.cultivo = cultivo;
     }
 }

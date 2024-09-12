@@ -8,4 +8,11 @@ public class CultivoOtoño extends Cultivo{
     public String getEstacion() {
         return "Otoño";
     }
+
+    @Override
+    public String toString() {
+        return "Cultivo de otoño " +
+                "diasCrecimiento:" + diasCrecimiento +
+                ", nombre:" + nombre;
+    }
 }

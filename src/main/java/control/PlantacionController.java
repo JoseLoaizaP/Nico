@@ -27,11 +27,15 @@ public class PlantacionController {
     }
 
     public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
-        plantacion.addCultivoInPlantacion(nombre, diasCrecimiento, estacion, identificador);
+        plantacion.addCultivoToPlantacion(nombre, diasCrecimiento, estacion);
     }
 
-    public SimpleLinkedListPlantación getPeople() {
+    public SimpleLinkedListPlantación getPlantaciones() {
         return plantaciones;
+    }
+
+    public String listarPlantaciones(){
+        return getPlantaciones().listarPlantacion();
     }
 
 }

@@ -4,19 +4,26 @@ import model.Cofre;
 
 public class SimpleLinkedListCofre {
     private NodeCofre first;
+    private int size;
+
 
     public void add(String id,  Cofre cofre){
-        NodeCofre node = new NodeCofre(id, cofre);
+        NodeCofre node = new NodeCofre(id, 0, cofre);
 
         // Caso Base -> La lista esta vacia
         if(first == null){
             first = node;
+            this.size++;
         }
 
         // Caso Base -> La lista no esta vacia
         else {
             if(first.getNext() == null){
                 first.setNext(node);
+                first.getNext().setIdx(1);
+                first.getNext().setIdx(1);
+                this.size++;
+
             }
             // Caso Iterativo
             else {
@@ -25,6 +32,8 @@ public class SimpleLinkedListCofre {
                     current = current.getNext();
                 }
                 current.setNext(node);
+                this.size++;
+                current.getNext().setIdx(size-1);
             }
         }
     }
@@ -49,6 +58,7 @@ public class SimpleLinkedListCofre {
                     isFound = true;
                 }
                 current = current.getNext();
+
             }
         }
         return found;
@@ -63,7 +73,7 @@ public class SimpleLinkedListCofre {
         NodeCofre current = first;
 
         while (current != null) {
-            sb.append(current.getCofre().getCofreId());  // Añadir el ID del cofre actual
+            sb.append(current.getIdx() + "-" +current.getCofre().getCofreId());  // Añadir el ID del cofre actual
             if (current.getNext() != null) {
                 sb.append(", ");
             }
@@ -73,6 +83,9 @@ public class SimpleLinkedListCofre {
         return sb.toString();
     }
 
+    public int getSize() {
+        return size;
+    }
 
     public NodeCofre getFirst() {
         return first;

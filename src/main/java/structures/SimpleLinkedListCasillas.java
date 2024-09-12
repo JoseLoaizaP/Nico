@@ -7,7 +7,7 @@ import model.Cultivo;
 public class SimpleLinkedListCasillas {
     private NodeCasilla first;
     private int size;
-    private static final int MAX_CULTIVOS = 25;
+    private static final int MAX_CASILLAS = 25;
 
     public SimpleLinkedListCasillas() {
         this.first = null;
@@ -16,8 +16,8 @@ public class SimpleLinkedListCasillas {
 
     public void add(String id,  Cultivo cultivo) throws CasillaLlenaException {
 
-        if (size >= MAX_CULTIVOS) {
-            throw new CasillaLlenaException("El cofre ya contiene " + MAX_CULTIVOS + " casillas.");
+        if (size >= MAX_CASILLAS) {
+            throw new CasillaLlenaException("Capacidad máxima de casillas alcanzada " + MAX_CASILLAS + " casillas.");
         }
 
         NodeCasilla node = new NodeCasilla(id, cultivo);
@@ -25,6 +25,7 @@ public class SimpleLinkedListCasillas {
         // Caso Base -> La lista esta vacia
         if(first == null){
             first = node;
+            this.size++;
         }
 
         // Caso Base -> La lista no esta vacia
@@ -39,6 +40,7 @@ public class SimpleLinkedListCasillas {
                     current = current.getNext();
                 }
                 current.setNext(node);
+                this.size++;
             }
         }
     }

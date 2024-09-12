@@ -6,7 +6,7 @@ import model.Plantacion;
 
 public class SimpleLinkedListPlantación {
     private NodePlantacion first;
-    private final int MAX_PARCELA = 5;
+    private final int MAX_CULTIVO = 5;
     private int size;
 
     public SimpleLinkedListPlantación() {
@@ -16,32 +16,40 @@ public class SimpleLinkedListPlantación {
 
     public void add(String id,  Plantacion plantacion) throws PlantacionLlenaException {
 
-        if (size >= MAX_PARCELA) {
-            throw new PlantacionLlenaException("La plantación ya contiene " + MAX_PARCELA + " parcelas.");
+        NodePlantacion node = new NodePlantacion(id,0 ,plantacion);
+
+        if (size >= MAX_CULTIVO) {
+            throw new PlantacionLlenaException("La plantación ya contiene  la cantidad maxima de cultivos" + MAX_CULTIVO );
         }
 
-        NodePlantacion node = new NodePlantacion(id, plantacion);
 
-        // Caso Base -> La lista esta vacia
-        if(first == null){
-            first = node;
-        }
-
-        // Caso Base -> La lista no esta vacia
-        else {
-            if(first.getNext() == null){
-                first.setNext(node);
+        if(this.size <= MAX_CULTIVO) {
+            // Caso Base -> La lista esta vacia
+            if (first == null) {
+                first = node;
+                this.size++;
             }
-            // Caso Iterativo
+
+            // Caso Base -> La lista no esta vacia
             else {
-                NodePlantacion current = first.getNext();
-                while (current.getNext() != null){
-                    current = current.getNext();
+                if (first.getNext() == null) {
+                    first.setNext(node);
+                    first.getNext().setIdx(1);
+                    this.size++;
                 }
-                current.setNext(node);
+                // Caso Iterativo
+                else {
+                    NodePlantacion current = first.getNext();
+                    while (current.getNext() != null) {
+                        current = current.getNext();
+                    }
+                    current.setNext(node);
+                    this.size++;
+                    current.getNext().setIdx(size - 1);
+                }
             }
+            this.size++;
         }
-        size++;
     }
 
     // buscar por nombre de persona | value = name

@@ -14,9 +14,16 @@ public class Cofre {
         this.cofreId = cofreId;
     }
 
-    public void addCultivoInCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
+    public void addCultivoInCofre(String casId, Cultivo cultivo){
 
-        if(estacion.equals("Primavera")){
+        try{
+            casilla.add(casId, cultivo);
+        }
+        catch (CasillaLlenaException e){
+            System.out.println("Error al agregar cultivo: " + e.getMessage());
+        }
+
+        /**if(estacion.equals("Primavera")){
             try {
                 CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
                 casilla.add(identificador, cultivo);
@@ -45,7 +52,7 @@ public class Cofre {
             }catch (CasillaLlenaException e){
                 System.out.println("Error al agregar cultivo: " + e.getMessage());
             }
-        }
+        }*/
 
     }
 

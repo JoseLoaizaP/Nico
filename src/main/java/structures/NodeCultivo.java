@@ -6,10 +6,12 @@ public class NodeCultivo {
 
     private String id;
     private Cultivo cultivo;
+    private int idx;
     private NodeCultivo next;
 
-    public NodeCultivo(String id, Cultivo cultivo) {
+    public NodeCultivo(String id, int idx, Cultivo cultivo) {
         this.id = id;
+        this.idx = idx;
         this.cultivo = cultivo;
     }
 
@@ -35,6 +37,14 @@ public class NodeCultivo {
 
     public void setNext(NodeCultivo next) {
         this.next = next;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     @Override
