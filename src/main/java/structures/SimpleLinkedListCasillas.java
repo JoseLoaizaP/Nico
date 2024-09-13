@@ -20,7 +20,7 @@ public class SimpleLinkedListCasillas {
             throw new CasillaLlenaException("Capacidad máxima de casillas alcanzada " + MAX_CASILLAS + " casillas.");
         }
 
-        NodeCasilla node = new NodeCasilla(id, cultivo);
+        NodeCasilla node = new NodeCasilla(id, 0, cultivo);
 
         // Caso Base -> La lista esta vacia
         if(first == null){
@@ -32,6 +32,8 @@ public class SimpleLinkedListCasillas {
         else {
             if(first.getNext() == null){
                 first.setNext(node);
+                first.getNext().setIdx(1);
+                this.size++;
             }
             // Caso Iterativo
             else {
@@ -41,6 +43,7 @@ public class SimpleLinkedListCasillas {
                 }
                 current.setNext(node);
                 this.size++;
+                current.getNext().setIdx(size - 1);
             }
         }
     }
@@ -71,14 +74,14 @@ public class SimpleLinkedListCasillas {
 
     public String listarCasillas() {
         if (first == null) {
-            return "La casilla está vacía.";
+            return "Las casillas están vacía.";
         }
 
         StringBuilder sb = new StringBuilder();
         NodeCasilla current = first;
 
         while (current != null) {
-            sb.append(current.getCultivo().getName());
+            sb.append(current.getIdx()+ " " + current.getCultivo());
             if (current.getNext() != null) {
                 sb.append(", ");
             }

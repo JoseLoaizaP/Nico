@@ -38,12 +38,11 @@ public class SimpleLinkedListCofre {
         }
     }
 
-    // buscar por nombre de persona | value = name
-    public NodeCofre search(String value){
+    public NodeCofre search(int idx){
         NodeCofre found = null;
 
         // Caso Base
-        if(first.getCofre().getCofreId().equals(value)){
+        if(first.getIdx() == idx){
             found = first;
         }
 
@@ -53,7 +52,7 @@ public class SimpleLinkedListCofre {
             boolean isFound = false;
 
             while (current.getNext() != null && !isFound) {
-                if (current.getCofre().getCofreId().equals(value)) {
+                if (current.getIdx() == idx) {
                     found = current;
                     isFound = true;
                 }
@@ -87,7 +86,31 @@ public class SimpleLinkedListCofre {
         return size;
     }
 
+    public NodeCofre get(int idx) {
+        NodeCofre found = null;
+        if(first.getIdx() == idx){
+            found = first;
+        }
+
+        // Caso Iterativo
+        else {
+            NodeCofre current = first;
+            boolean isFound = false;
+
+            while (current.getNext() != null && !isFound) {
+                if (current.getIdx() == idx) {
+                    found = current;
+                    isFound = true;
+                }
+                current = current.getNext();
+            }
+        }
+        return found;
+    }
+
     public NodeCofre getFirst() {
         return first;
     }
+
+
 }

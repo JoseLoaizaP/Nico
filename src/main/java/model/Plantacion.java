@@ -1,6 +1,9 @@
 package model;
 
 
+import control.PlantacionController;
+import exceptions.CasillaLlenaException;
+import exceptions.CultivoLlenoException;
 import structures.SimpleLinkedListCultivos;
 import structures.SimpleLinkedListPlantación;
 
@@ -13,16 +16,15 @@ public class Plantacion {
     }
 
 
-    public void addCultivoToPlantacion(String nombre, int diasCrecimiento, String estacion){
-        if(estacion.equals("Primavera")){
-            CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
-        } else if (estacion.equals("Verano")) {
-            CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-        }else if (estacion.equals("Otoño")) {
-            CultivoOtoño cultivo = new CultivoOtoño(nombre, diasCrecimiento);
-        }else if (estacion.equals("Invierno")) {
-            CultivoInvierno cultivo = new CultivoInvierno(nombre, diasCrecimiento);
+    public void addCultivoInPlantacion(String cultivoId, Cultivo cultivo){
+
+        try{
+            cultivos.add(cultivoId, cultivo);
         }
+        catch (CultivoLlenoException e){
+            System.out.println("Error al agregar cultivo: " + e.getMessage());
+        }
+
     }
 
     public String getPlantacionId() {
@@ -31,5 +33,13 @@ public class Plantacion {
 
     public void setPlantacionId(String plantacionId) {
         this.plantacionId = plantacionId;
+    }
+
+    public SimpleLinkedListCultivos getCultivos() {
+        return cultivos;
+    }
+
+    public void setCultivos(SimpleLinkedListCultivos cultivos) {
+        this.cultivos = cultivos;
     }
 }

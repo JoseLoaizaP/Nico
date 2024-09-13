@@ -105,18 +105,20 @@ public class CultivoController {
         }
     }
 
-    // Método para listar todos los cultivos (por si lo necesitas)
+
     public String listarCultivosArray(){
-        if (Ajo == null) {
+        if (listaCultivos == null || listaCultivos.isEmpty()) {
 
             return "Los cultivos no han sido inicializados.";
         }
-        String str = "";
+        StringBuilder str = new StringBuilder();
+        int n = listaCultivos.size();
         for (Cultivo cultivo : listaCultivos) {
-            str += cultivo.getName() + "\n";
-
+            for (int i = 1; i == n; i++) {
+                str.append(i).append(" ").append(cultivo.getName()).append("\n");
+            }
         }
-        return str;
+        return str.toString();
     }
 }
 

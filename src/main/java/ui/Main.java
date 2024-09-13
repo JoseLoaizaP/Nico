@@ -30,7 +30,6 @@ public class Main {
     public void menu (){
         boolean flag = true;
         do{
-
             System.out.println("\n===== Menú Principal =====");
             System.out.println("1. Ver lista de cultivos");
             System.out.println("2. Crear cofre");
@@ -39,6 +38,8 @@ public class Main {
             System.out.println("5. Introducir cultivo a cofre");
             System.out.println("6. Listar cofres");
             System.out.println("7. listar plantación");
+            System.out.println("8. Buscar cofre");
+            System.out.println("9. Buscar plantación");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -69,6 +70,12 @@ public class Main {
                 case 7:
                     listarPlantaciones();
                     break;
+                case 8:
+                    buscarCofre();;
+                    break;
+                case 9:
+                    buscarCultivo();
+                    break;
 
                 case 0:
                     flag = false;
@@ -83,7 +90,9 @@ public class Main {
     }
 
     public void listaCultivos(){
-        culController.listarCultivos();
+        culController.agregarCultivosALista();
+        String lista = culController.listarCultivosArray();
+        System.out.println(lista);
     }
 
     public void crearCofre(){
@@ -101,6 +110,18 @@ public class Main {
     }
 
     public void cultivoEnPlantacion(){
+        culController.agregarCultivosALista();
+        System.out.println(culController.listarCultivosArray());
+        System.out.println("\nDigite el indice del cultivo que desea añadir");
+        int indice = reader.nextInt();
+        System.out.println("Digite el identificador");
+        reader.nextLine();
+        reader.nextLine();
+        String ident = reader.nextLine();
+        plantController.addCultivoInPlantacion(culController.buscarCultivoPorPosicion(indice), ident);
+    }
+
+    public void cultivoEnCofre(){
         reader.nextLine();
         culController.agregarCultivosALista();
         System.out.println(culController.listarCultivosArray());
@@ -112,16 +133,28 @@ public class Main {
         cofController.addCultivotoCofre(culController.buscarCultivoPorPosicion(indice), ident);
     }
 
-    public void cultivoEnCofre(){
-
-    }
-
     public void listarCofres(){
         System.out.println(cofController.listarCofres());
     }
 
     public void listarPlantaciones(){
+        System.out.println(plantController.listarPlantaciones());
+    }
 
+    public void buscarCofre(){
+        listarCofres();
+        System.out.println("Digite el indice del cofre al que desea acceder");
+        reader.nextLine();
+        int idx = reader.nextInt();
+        System.out.println(cofController.buscarCofre(idx).getCasilla().listarCasillas());
+    }
+
+    public void buscarCultivo(){
+        listaCultivos();
+        System.out.println("Digite el indice del cofre al que desea acceder");
+        reader.nextLine();
+        int idx = reader.nextInt();
+        plantController.buscarCultivo(idx).getCultivos().listarCultivos();
     }
 
 }

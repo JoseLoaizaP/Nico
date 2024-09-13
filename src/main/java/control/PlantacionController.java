@@ -2,11 +2,13 @@ package control;
 
 
 import exceptions.PlantacionLlenaException;
+import model.Cofre;
+import model.Cultivo;
 import model.Plantacion;
 import structures.SimpleLinkedListPlantación;
 
 
-public class PlantacionController {
+public class PlantacionController extends Throwable {
     private SimpleLinkedListPlantación plantaciones;
     private Plantacion plantacion;
 
@@ -26,8 +28,8 @@ public class PlantacionController {
         }
     }
 
-    public void addCultivoInPlantacion(String nombre, int diasCrecimiento, String estacion,String identificador){
-        plantacion.addCultivoToPlantacion(nombre, diasCrecimiento, estacion);
+    public void addCultivoInPlantacion(Cultivo cultivo, String identificador){
+        plantacion.addCultivoInPlantacion(identificador, cultivo);
     }
 
     public SimpleLinkedListPlantación getPlantaciones() {
@@ -37,5 +39,12 @@ public class PlantacionController {
     public String listarPlantaciones(){
         return getPlantaciones().listarPlantacion();
     }
+
+    public Plantacion buscarCultivo(int idx){
+        return plantaciones.search(idx).getPlantacion();
+    }
+
+
+
 
 }

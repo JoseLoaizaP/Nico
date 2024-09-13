@@ -24,7 +24,7 @@ public class SimpleLinkedListCultivos {
 
             // Caso Base -> La lista no esta vacia
             else {
-                if(first.getNext() == null){
+                if(first.getNext() == null && first.getValueCultivo() == cultivo){
                     first.setNext(node);
                     // se actualiza el indice y se aumenta el tamaño de la lista
                     first.getNext().setIdx(1);
@@ -64,5 +64,24 @@ public class SimpleLinkedListCultivos {
             }
         }
         return found;
+    }
+
+    public String listarCultivos() {
+        if (first == null) {
+            return "el cultivo está vacío.";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        NodeCultivo current = first;
+
+        while (current != null) {
+            sb.append(current.getIdx() + " " + current.getValueCultivo().getName());
+            if (current.getNext() != null) {
+                sb.append(", ");
+            }
+            current = current.getNext();
+        }
+
+        return sb.toString();
     }
 }

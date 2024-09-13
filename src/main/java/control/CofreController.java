@@ -3,7 +3,10 @@ package control;
 import model.Cofre;
 import model.Cultivo;
 import structures.SimpleLinkedListCofre;
+import structures.SimpleLinkedListCultivos;
 import structures.SimpleLinkedListPlantación;
+
+import java.util.Comparator;
 
 
 public class CofreController {
@@ -31,5 +34,8 @@ public class CofreController {
         return getCofres().listarCofres();
     }
 
+    public Cofre buscarCofre(int idx){
+        return cofres.search(idx).getCofre();
+    }
 
 }

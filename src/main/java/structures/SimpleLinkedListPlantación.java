@@ -16,12 +16,10 @@ public class SimpleLinkedListPlantación {
 
     public void add(String id,  Plantacion plantacion) throws PlantacionLlenaException {
 
-        NodePlantacion node = new NodePlantacion(id,0 ,plantacion);
-
         if (size >= MAX_CULTIVO) {
             throw new PlantacionLlenaException("La plantación ya contiene  la cantidad maxima de cultivos" + MAX_CULTIVO );
         }
-
+        NodePlantacion node = new NodePlantacion(id,0 ,plantacion);
 
         if(this.size <= MAX_CULTIVO) {
             // Caso Base -> La lista esta vacia
@@ -52,12 +50,12 @@ public class SimpleLinkedListPlantación {
         }
     }
 
-    // buscar por nombre de persona | value = name
-    public NodePlantacion search(String value){
+
+    public NodePlantacion search(int idx){
         NodePlantacion found = null;
 
         // Caso Base
-        if(first.getPlantacion().getPlantacionId().equals(value)){
+        if(first.getIdx() == idx){
             found = first;
         }
 
@@ -67,7 +65,7 @@ public class SimpleLinkedListPlantación {
             boolean isFound = false;
 
             while (current.getNext() != null && !isFound) {
-                if (current.getPlantacion().getPlantacionId().equals(value)) {
+                if (current.getIdx() == idx) {
                     found = current;
                     isFound = true;
                 }
@@ -86,7 +84,7 @@ public class SimpleLinkedListPlantación {
         NodePlantacion current = first;
 
         while (current != null) {
-            sb.append(current.getPlantacion().getPlantacionId());
+            sb.append(current.getIdx() + " " + current.getPlantacion().getPlantacionId());
             if (current.getNext() != null) {
                 sb.append(", ");
             }

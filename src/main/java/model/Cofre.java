@@ -23,40 +23,17 @@ public class Cofre {
             System.out.println("Error al agregar cultivo: " + e.getMessage());
         }
 
-        /**if(estacion.equals("Primavera")){
-            try {
-                CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-
-        } else if (estacion.equals("Verano")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-        }else if (estacion.equals("Otoño")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-        }else if (estacion.equals("Invierno")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-        }*/
-
     }
 
     public String getCofreId() {
         return cofreId;
+    }
+
+    public SimpleLinkedListCasillas getCasilla() {
+        return casilla;
+    }
+
+    public void setCasilla(SimpleLinkedListCasillas casilla) {
+        this.casilla = casilla;
     }
 }
