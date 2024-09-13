@@ -69,7 +69,7 @@ public class CultivoController {
     }
 
     // Método para agregar todos los cultivos al ArrayList
-    public void agregarCultivosALista() {
+    public ArrayList<Cultivo> agregarCultivosALista() {
         listaCultivos = new ArrayList<>();
 
         // Agregamos todos los cultivos a la lista
@@ -88,6 +88,7 @@ public class CultivoController {
         listaCultivos.add(Melon);
         listaCultivos.add(Fruta_Milenaria);
 
+        return listaCultivos;
     }
 
     // Método para obtener la lista de cultivos
@@ -106,19 +107,19 @@ public class CultivoController {
     }
 
 
-    public String listarCultivosArray(){
-        if (listaCultivos == null || listaCultivos.isEmpty()) {
+    public String listarCultivosArray(ArrayList<Cultivo> listaCultivos){
+
+
+        if (listaCultivos.isEmpty()) {
 
             return "Los cultivos no han sido inicializados.";
         }
-        StringBuilder str = new StringBuilder();
+        String str= "";
         int n = listaCultivos.size();
-        for (Cultivo cultivo : listaCultivos) {
-            for (int i = 1; i == n; i++) {
-                str.append(i).append(" ").append(cultivo.getName()).append("\n");
-            }
+        for (int i = 0; i < listaCultivos.size(); i++) {
+           str += i + " " + listaCultivos.get(i).getName() + "\n";
         }
-        return str.toString();
+        return str;
     }
 }
 

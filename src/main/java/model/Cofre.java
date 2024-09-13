@@ -14,10 +14,10 @@ public class Cofre {
         this.cofreId = cofreId;
     }
 
-    public void addCultivoInCofre(String casId, Cultivo cultivo){
+    public void addCultivoInCofre(String id, Cultivo cultivo){
 
         try{
-            casilla.add(casId, cultivo);
+            casilla.add(id, cultivo);
         }
         catch (CasillaLlenaException e){
             System.out.println("Error al agregar cultivo: " + e.getMessage());
