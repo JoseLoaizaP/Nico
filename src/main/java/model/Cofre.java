@@ -1,6 +1,7 @@
 package model;
 
 import exceptions.CasillaLlenaException;
+import structures.NodeCasilla;
 import structures.SimpleLinkedListCasillas;
 
 public class Cofre {
@@ -13,42 +14,26 @@ public class Cofre {
         this.cofreId = cofreId;
     }
 
-    public void addCultivoInCofre(String nombre, int diasCrecimiento, String estacion,String identificador){
+    public void addCultivoInCofre(String id, Cultivo cultivo){
 
-        if(estacion.equals("Primavera")){
-            try {
-                CultivoPrimavera cultivo = new CultivoPrimavera(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-
-        } else if (estacion.equals("Verano")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-        }else if (estacion.equals("Otoño")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
-        }else if (estacion.equals("Invierno")) {
-            try {
-                CultivoVerano cultivo = new CultivoVerano(nombre, diasCrecimiento);
-                casilla.add(identificador, cultivo);
-            }catch (CasillaLlenaException e){
-                System.out.println("Error al agregar cultivo: " + e.getMessage());
-            }
+        try{
+            casilla.add(id, cultivo);
+        }
+        catch (CasillaLlenaException e){
+            System.out.println("Error al agregar cultivo: " + e.getMessage());
         }
 
     }
 
     public String getCofreId() {
         return cofreId;
+    }
+
+    public SimpleLinkedListCasillas getCasilla() {
+        return casilla;
+    }
+
+    public void setCasilla(SimpleLinkedListCasillas casilla) {
+        this.casilla = casilla;
     }
 }

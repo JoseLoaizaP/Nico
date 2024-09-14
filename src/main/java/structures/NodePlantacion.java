@@ -7,9 +7,11 @@ public class NodePlantacion {
     private String id;
     private Plantacion plantacion;
     private NodePlantacion next;
+    private int idx;
 
-    public NodePlantacion(String id, Plantacion plantacion) {
+    public NodePlantacion(String id, int idx,Plantacion plantacion) {
         this.id = id;
+        this.idx = idx;
         this.plantacion = plantacion;
     }
 
@@ -35,5 +37,13 @@ public class NodePlantacion {
 
     public void setNext(NodePlantacion next) {
         this.next = next;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 }

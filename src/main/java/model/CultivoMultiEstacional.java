@@ -18,5 +18,13 @@ public class CultivoMultiEstacional extends Cultivo {
     public List<String> getEstaciones() {
         return estaciones;
     }
+
+    @Override
+    public String toString() {
+        return "Cultivo multiestacional" +
+                "estaciones:" + estaciones +
+                ", nombre: " + nombre +
+                ", diasCrecimiento: " + diasCrecimiento ;
+    }
 }
 

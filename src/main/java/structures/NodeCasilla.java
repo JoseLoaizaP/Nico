@@ -6,10 +6,12 @@ import model.Cultivo;
 public class NodeCasilla {
     private String id;
     private Cultivo cultivo;
+    private int idx;
     private NodeCasilla next;
 
-    public NodeCasilla(String id, Cultivo cultivo) {
+    public NodeCasilla(String id, int idx, Cultivo cultivo) {
         this.id = id;
+        this.idx = idx;
         this.cultivo = cultivo;
     }
 
@@ -35,6 +37,14 @@ public class NodeCasilla {
 
     public void setNext(NodeCasilla next) {
         this.next = next;
+    }
+
+    public int getIdx() {
+        return idx;
+    }
+
+    public void setIdx(int idx) {
+        this.idx = idx;
     }
 
     @Override

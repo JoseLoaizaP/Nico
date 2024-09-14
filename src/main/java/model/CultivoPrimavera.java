@@ -9,4 +9,11 @@ public class CultivoPrimavera extends Cultivo {
     public String getEstacion() {
         return "Primavera";
     }
+
+    @Override
+    public String toString() {
+        return "Cultivo de primavera " +
+                "diasCrecimiento:" + diasCrecimiento +
+                ", nombre:" + nombre ;
+    }
 }

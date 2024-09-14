@@ -10,4 +10,10 @@ public class CultivoVerano extends Cultivo{
         return "Verano";
     }
 
+    @Override
+    public String toString() {
+        return "Cultivo de verano " +
+                "nombre:'" + nombre + '\'' +
+                ", diasCrecimiento:" + diasCrecimiento;
+    }
 }
