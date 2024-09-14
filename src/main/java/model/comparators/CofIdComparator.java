@@ -1,4 +1,6 @@
-package model;
+package model.comparators;
+
+import model.Cofre;
 
 import java.util.Comparator;
 

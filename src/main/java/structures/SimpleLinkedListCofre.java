@@ -2,6 +2,8 @@ package structures;
 
 import model.Cofre;
 
+import java.util.Comparator;
+
 public class SimpleLinkedListCofre {
     private NodeCofre first;
     private int size;
@@ -112,5 +114,31 @@ public class SimpleLinkedListCofre {
         return first;
     }
 
+    public void sort(Comparator<Cofre> comparator) {
+        if (first == null || first.getNext() == null) {
+            return; // No es necesario ordenar si la lista está vacía o tiene un solo elemento
+        }
 
+        boolean swapped;
+        do {
+            swapped = false;
+            NodeCofre current = first;
+
+            while (current != null && current.getNext() != null) {
+                if (comparator.compare(current.getCofre(), current.getNext().getCofre()) > 0) {
+                    // Intercambiar los datos entre los nodos
+                    Cofre temp = current.getCofre();
+                    current.setCofre(current.getNext().getCofre()); // Asignar el valor del siguiente nodo al nodo actual
+                    current.getNext().setCofre(temp);
+
+                    swapped = true;
+                }
+                current = current.getNext();
+            }
+        } while (swapped);
+    }
 }
+
+
+
+

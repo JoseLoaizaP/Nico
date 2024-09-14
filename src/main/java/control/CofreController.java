@@ -13,16 +13,16 @@ public class CofreController {
     private SimpleLinkedListCofre cofres;
     private Cofre cofre;
 
-    public CofreController(){
+    public CofreController() {
         cofres = new SimpleLinkedListCofre();
     }
 
-    public void addCofre(String cofreId){
+    public void addCofre(String cofreId) {
         Cofre cofre = new Cofre(cofreId);
         cofres.add(cofreId, cofre);
     }
 
-    public void addCultivotoCofre(Cultivo cultivo, String identificador){
+    public void addCultivotoCofre(Cultivo cultivo, String identificador) {
         cofre.addCultivoInCofre(identificador, cultivo);
     }
 
@@ -30,12 +30,15 @@ public class CofreController {
         return cofres;
     }
 
-    public String listarCofres(){
+    public String listarCofres() {
         return getCofres().listarCofres();
     }
 
-    public Cofre buscarCofre(int idx){
+    public Cofre buscarCofre(int idx) {
         return cofres.search(idx).getCofre();
     }
 
+    public void ordenarCofre(){
+
+    }
 }

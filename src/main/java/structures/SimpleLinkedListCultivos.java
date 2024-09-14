@@ -3,6 +3,8 @@ package structures;
 import exceptions.CultivoLlenoException;
 import model.Cultivo;
 
+import java.util.Comparator;
+
 public class SimpleLinkedListCultivos {
     private NodeCultivo first;
     private int size;
@@ -83,5 +85,29 @@ public class SimpleLinkedListCultivos {
         }
 
         return sb.toString();
+    }
+
+    public void sort(Comparator<Cultivo> comparator) {
+        if (first == null || first.getNext() == null) {
+            return; // No es necesario ordenar si la lista está vacía o tiene un solo elemento
+        }
+
+        boolean swapped;
+        do {
+            swapped = false;
+            NodeCultivo current = first;
+
+            while (current != null && current.getNext() != null) {
+                if (comparator.compare(current.getValueCultivo(), current.getNext().getValueCultivo()) > 0) {
+                    // Intercambiar los datos entre los nodos
+                    Cultivo temp = current.getValueCultivo();
+                    current.setValueCultivo(current.getNext().getValueCultivo()); // Asignar el valor del siguiente nodo al nodo actual
+                    current.getNext().setValueCultivo(temp);
+
+                    swapped = true;
+                }
+                current = current.getNext();
+            }
+        } while (swapped);
     }
 }

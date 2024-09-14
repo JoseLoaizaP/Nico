@@ -1,8 +1,9 @@
 package structures;
 
 import exceptions.CasillaLlenaException;
-import exceptions.CofreLlenoException;
 import model.Cultivo;
+
+import java.util.Comparator;
 
 public class SimpleLinkedListCasillas {
     private NodeCasilla first;
@@ -89,6 +90,30 @@ public class SimpleLinkedListCasillas {
         }
 
         return sb.toString();
+    }
+
+    public void sort(Comparator<Cultivo> comparator) {
+        if (first == null || first.getNext() == null) {
+            return; // No es necesario ordenar si la lista está vacía o tiene un solo elemento
+        }
+
+        boolean swapped;
+        do {
+            swapped = false;
+            NodeCasilla current = first;
+
+            while (current != null && current.getNext() != null) {
+                if (comparator.compare(current.getCultivo(), current.getNext().getCultivo()) > 0) {
+                    // Intercambiar los datos entre los nodos
+                    Cultivo temp = current.getCultivo();
+                    current.setCultivo(current.getNext().getCultivo()); // Asignar el valor del siguiente nodo al nodo actual
+                    current.getNext().setCultivo(temp);
+
+                    swapped = true;
+                }
+                current = current.getNext();
+            }
+        } while (swapped);
     }
 
 }
