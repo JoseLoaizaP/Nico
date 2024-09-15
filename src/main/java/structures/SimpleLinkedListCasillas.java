@@ -15,13 +15,16 @@ public class SimpleLinkedListCasillas {
         this.size = 0;
     }
 
-    public void add(String id,  Cultivo cultivo) throws CasillaLlenaException {
+    public void add(Cultivo cultivo) throws CasillaLlenaException {
+        NodeCasilla node = new NodeCasilla(0, cultivo);
 
         if (size >= MAX_CASILLAS) {
             throw new CasillaLlenaException("Capacidad máxima de casillas alcanzada " + MAX_CASILLAS + " casillas.");
         }
 
-        NodeCasilla node = new NodeCasilla(id, 0, cultivo);
+        if (first != null && !first.getCultivo().getClass().equals(cultivo.getClass())) {
+            System.out.println("Se agrego el cultivo a la siguiente casilla");
+        }
 
         // Caso Base -> La lista esta vacia
         if(first == null){
@@ -82,7 +85,7 @@ public class SimpleLinkedListCasillas {
         NodeCasilla current = first;
 
         while (current != null) {
-            sb.append(current.getIdx()+ " " + current.getCultivo());
+            sb.append(current.getIdx()+1+ " " + current.getCultivo());
             if (current.getNext() != null) {
                 sb.append(", ");
             }

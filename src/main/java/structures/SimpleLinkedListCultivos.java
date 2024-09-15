@@ -17,6 +17,38 @@ public class SimpleLinkedListCultivos {
             throw new CultivoLlenoException ("cantidad maxima de cultivos alcanzada" + MAX_CULTIVOS);
         }
 
+        if (first != null && !first.getValueCultivo().getName().equals(cultivo.getName())) {
+            System.out.println("Se agrego el cultivo a la siguiente casilla");
+            if (this.size <= MAX_CULTIVOS){
+                // Caso Base -> La lista esta vacia
+                if(first == null){
+                    first = node;
+                    this.size++;
+                }
+
+                // Caso Base -> La lista no esta vacia
+                else {
+                    if(first.getNext() == null && first.getValueCultivo() == cultivo){
+                        first.setNext(node);
+                        // se actualiza el indice y se aumenta el tamaño de la lista
+                        first.getNext().setIdx(1);
+                        this.size++;
+                    }
+                    // Caso Iterativo
+                    else {
+                        // nodo actual
+                        NodeCultivo current = first.getNext();
+                        while (current.getNext() != null){
+                            current = current.getNext();
+                        }
+                        current.setNext(node);
+                        this.size++;
+                        current.getNext().setIdx(size-1);
+                    }
+                }
+            }
+        }
+
         if (this.size <= MAX_CULTIVOS){
             // Caso Base -> La lista esta vacia
             if(first == null){

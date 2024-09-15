@@ -40,6 +40,8 @@ public class Main {
             System.out.println("7. listar plantación");
             System.out.println("8. Buscar cofre");
             System.out.println("9. Buscar plantación");
+            System.out.println("10. Ordenar Cofres por identificador");
+            System.out.println("10. Ordenar Plantaciones por identificador");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -76,6 +78,12 @@ public class Main {
                 case 9:
                     buscarCultivo();
                     break;
+                case 10:
+                    ordenarCofres();
+                    break;
+                case 11:
+                    ordenarPlantaciones();
+                    break;
 
                 case 0:
                     flag = false;
@@ -104,7 +112,7 @@ public class Main {
         reader.nextLine();
         System.out.println("Digite el id que desee que tenga la plantación");
         String plantId = reader.nextLine();
-        cofController.addCofre(plantId);
+        plantController.addPlantacion(plantId);
     }
 
     public void cultivoEnPlantacion(){
@@ -136,9 +144,6 @@ public class Main {
         int idx = reader.nextInt();
         System.out.println(cofController.buscarCofre(idx).getCasilla().listarCasillas());
 
-        System.out.println("Digite el indice de las casilla a la cual le quiera asignar el cultivo");
-        int idx2 = reader.nextInt();
-
         System.out.println(culController.listarCultivosArray(culController.agregarCultivosALista()));
         System.out.println("\nDigite el identificador del cultivo que desea añadir");
         int indice = reader.nextInt();
@@ -147,7 +152,7 @@ public class Main {
         reader.nextLine();
         String identificador = reader.nextLine();
 
-      cofController.buscarCofre(idx).addCultivoInCofre(identificador , culController.buscarCultivoPorPosicion(indice));
+        cofController.buscarCofre(idx).addCultivoInCofre(identificador , culController.buscarCultivoPorPosicion(indice));
 
 
     }
@@ -174,6 +179,16 @@ public class Main {
         reader.nextLine();
         int idx = reader.nextInt();
         plantController.buscarCultivo(idx).getCultivos().listarCultivos();
+    }
+
+    public void ordenarCofres(){
+        cofController.ordenarCofre(cofController.getCofres());
+        System.out.println(cofController.listarCofres());
+    }
+
+    public void ordenarPlantaciones(){
+        plantController.ordenarPlantaciones(plantController.getPlantaciones());
+        System.out.println(plantController.listarPlantaciones());
     }
 
 }

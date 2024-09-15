@@ -2,9 +2,9 @@ package control;
 
 import model.Cofre;
 import model.Cultivo;
+import model.comparators.CofIdComparator;
 import structures.SimpleLinkedListCofre;
-import structures.SimpleLinkedListCultivos;
-import structures.SimpleLinkedListPlantación;
+import model.comparators.CofIdComparator;
 
 import java.util.Comparator;
 
@@ -12,9 +12,11 @@ import java.util.Comparator;
 public class CofreController {
     private SimpleLinkedListCofre cofres;
     private Cofre cofre;
+    private CofIdComparator comparator;
 
     public CofreController() {
         cofres = new SimpleLinkedListCofre();
+        comparator = new CofIdComparator();
     }
 
     public void addCofre(String cofreId) {
@@ -38,7 +40,7 @@ public class CofreController {
         return cofres.search(idx).getCofre();
     }
 
-    public void ordenarCofre(){
-
+    public void ordenarCofre(SimpleLinkedListCofre cofresDesordenados){
+      cofres.sort(comparator, cofresDesordenados);
     }
 }

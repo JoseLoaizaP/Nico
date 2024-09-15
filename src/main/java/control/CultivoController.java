@@ -98,7 +98,7 @@ public class CultivoController {
 
     public Cultivo buscarCultivoPorPosicion(int posicion) {
         // Verificamos si la posición es válida
-        if (posicion-1 >= 0 && posicion-1 < listaCultivos.size()) {
+        if (posicion + 1 >= 0 && posicion-1 < listaCultivos.size()) {
             return listaCultivos.get(posicion-1);
         } else {
             System.out.println("Posición no válida.");
@@ -117,7 +117,7 @@ public class CultivoController {
         String str= "";
         int n = listaCultivos.size();
         for (int i = 0; i < listaCultivos.size(); i++) {
-           str += i + " " + listaCultivos.get(i).getName() + "\n";
+           str += i+1 + " " + listaCultivos.get(i).getName() + "\n";
         }
         return str;
     }

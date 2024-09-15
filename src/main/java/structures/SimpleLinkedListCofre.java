@@ -74,7 +74,7 @@ public class SimpleLinkedListCofre {
         NodeCofre current = first;
 
         while (current != null) {
-            sb.append(current.getIdx() + "-" +current.getCofre().getCofreId());  // Añadir el ID del cofre actual
+            sb.append(current.getIdx()  + "-" +current.getCofre().getCofreId());  // Añadir el ID del cofre actual
             if (current.getNext() != null) {
                 sb.append(", ");
             }
@@ -114,7 +114,7 @@ public class SimpleLinkedListCofre {
         return first;
     }
 
-    public void sort(Comparator<Cofre> comparator) {
+    public void sort(Comparator<Cofre> comparator, SimpleLinkedListCofre cofres) {
         if (first == null || first.getNext() == null) {
             return; // No es necesario ordenar si la lista está vacía o tiene un solo elemento
         }
@@ -137,6 +137,8 @@ public class SimpleLinkedListCofre {
             }
         } while (swapped);
     }
+
+
 }
 
 

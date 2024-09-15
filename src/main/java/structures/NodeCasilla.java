@@ -1,6 +1,5 @@
 package structures;
 
-import model.Casilla;
 import model.Cultivo;
 
 public class NodeCasilla {
@@ -9,7 +8,7 @@ public class NodeCasilla {
     private int idx;
     private NodeCasilla next;
 
-    public NodeCasilla(String id, int idx, Cultivo cultivo) {
+    public NodeCasilla(int idx, Cultivo cultivo) {
         this.id = id;
         this.idx = idx;
         this.cultivo = cultivo;

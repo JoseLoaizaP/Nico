@@ -2,30 +2,28 @@ package control;
 
 
 import exceptions.PlantacionLlenaException;
-import model.Cofre;
 import model.Cultivo;
 import model.Plantacion;
 import structures.SimpleLinkedListPlantación;
+import model.comparators.PlantacionIdComparator;
 
 
 public class PlantacionController extends Throwable {
     private SimpleLinkedListPlantación plantaciones;
     private Plantacion plantacion;
+    private PlantacionIdComparator comparator;
 
 
 
     public PlantacionController(){
          plantaciones = new SimpleLinkedListPlantación();
+         comparator = new PlantacionIdComparator();
     }
 
 
     public void addPlantacion(String plantacionId){
         Plantacion plantacion = new Plantacion(plantacionId);
-        try{
-            plantaciones.add(plantacionId, plantacion);
-        } catch (PlantacionLlenaException e){
-            System.out.println("Error al agregar cultivo, la plantación esta llena: " + e.getMessage());
-        }
+        plantaciones.add(plantacionId, plantacion);
     }
 
     public void addCultivoInPlantacion(Cultivo cultivo, String identificador){
@@ -44,7 +42,9 @@ public class PlantacionController extends Throwable {
         return plantaciones.search(idx).getPlantacion();
     }
 
-
+    public void ordenarPlantaciones(SimpleLinkedListPlantación plantacionesDesordenadas){
+        plantaciones.sort(comparator, plantacionesDesordenadas);
+    }
 
 
 }
