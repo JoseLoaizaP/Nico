@@ -1,6 +1,11 @@
 package control;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import model.*;
+
+import java.io.*;
+import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
@@ -22,8 +27,26 @@ public class CultivoController {
     private CultivoInvierno Melon;
     private CultivoMultiEstacional Fruta_Milenaria;
 
-    // ArrayList para almacenar todos los cultivos
     private ArrayList<Cultivo> listaCultivos;
+    private File data;
+    private File listJsonCultivos;
+
+    public CultivoController(){
+        listaCultivos = new ArrayList<>();
+
+        File projectDir = new File("C:\\Users\\josed\\Downloads\\APO\\Integradora_AMano");
+        this.data = new File(projectDir+"\\src\\main\\data");
+        this.listJsonCultivos = new File(data.getAbsoluteFile()+"\\cultivos.json");
+    }
+
+    public void createResources() throws IOException {
+        if (!data.exists()){
+            data.mkdir();
+            if(!listJsonCultivos.exists()){
+                listJsonCultivos.createNewFile();
+            }
+        }
+    }
 
     // Asignar los cultivos a las variables de instancia
     public void cultivosIniciales() {
@@ -120,6 +143,67 @@ public class CultivoController {
            str += i+1 + " " + listaCultivos.get(i).getName() + "\n";
         }
         return str;
+    }
+
+    public void saveCultivos(){
+        // objeto que nos ayuda con la serealizacion
+        Gson gson = new Gson();
+
+        // formateamos la informacion (de un arraylist a un formato Json)
+        String dataJson = gson.toJson(listaCultivos);
+        System.out.println(dataJson);
+
+        try {
+            // inicializar los recursos
+            createResources();
+
+            // Enlazar la información con el archivo
+            FileOutputStream fos = new FileOutputStream(this.listJsonCultivos);
+
+            // Escritor de la información
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(fos));
+
+            // Escribir la información
+            writer.write(dataJson);
+
+            // Borrar la información
+            writer.flush();
+
+            // cerrar el buffer
+            writer.close();
+
+
+        }
+        catch (FileNotFoundException e) {}
+        catch (IOException e){}
+
+    }
+    public void loadCultivos() {
+        Gson gson = new Gson();
+        try {
+            FileInputStream fis = new FileInputStream(this.listJsonCultivos);
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+
+            String line = "";
+            String data = "";
+
+            while ((line = reader.readLine()) != null) {
+                data += line;
+            }
+
+            reader.close();
+
+            Type listType = new TypeToken<ArrayList<Cultivo>>() {
+            }.getType();
+
+            listaCultivos = gson.fromJson(data, listType);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 

@@ -4,6 +4,8 @@ import control.PlantacionController;
 import control.CofreController;
 import control.CultivoController;
 import java.util.Scanner;
+import sistema.SimulacionEstaciones;
+
 
 public class Main {
     private Scanner reader;
@@ -11,7 +13,7 @@ public class Main {
     private PlantacionController plantController;
     private CultivoController culController;
     private Main main;
-
+    private SimulacionEstaciones simulacion;
 
 
     public static void main(String[] args){
@@ -25,12 +27,15 @@ public class Main {
         plantController = new PlantacionController();
         culController = new CultivoController();
         culController.cultivosIniciales();
+        simulacion = new SimulacionEstaciones();
     }
 
     public void menu (){
         boolean flag = true;
         do{
             System.out.println("\n===== Menú Principal =====");
+            simulacion.iniciarSimulacion();
+            simulacion.mostrarMesYEstacion();
             System.out.println("1. Ver lista de cultivos");
             System.out.println("2. Crear cofre");
             System.out.println("3. Crear plantación");
@@ -41,7 +46,8 @@ public class Main {
             System.out.println("8. Buscar cofre");
             System.out.println("9. Buscar plantación");
             System.out.println("10. Ordenar Cofres por identificador");
-            System.out.println("10. Ordenar Plantaciones por identificador");
+            System.out.println("11. Ordenar Plantaciones por identificador");
+            System.out.println("12. Guardar");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -84,6 +90,9 @@ public class Main {
                 case 11:
                     ordenarPlantaciones();
                     break;
+                case 12:
+                    guardar();
+                    break;
 
                 case 0:
                     flag = false;
@@ -118,23 +127,22 @@ public class Main {
     public void cultivoEnPlantacion(){
 
         reader.nextLine();
-        listaCultivos();
+        listarPlantaciones();
         System.out.println("Digite el indice de la plantacion a la que quiere agregar el cultivo");
         int idx = reader.nextInt();
-        System.out.println(plantController.buscarCultivo(idx).getCultivos());
 
+        System.out.println(plantController.buscarCultivo(idx).getCultivos().listarCultivos());
+
+        System.out.println(culController.listarCultivosArray(culController.agregarCultivosALista()));
         System.out.println("Digite el indice de la cual le quiera asignar el cultivo");
         int idx2 = reader.nextInt();
 
-        System.out.println(culController.listarCultivosArray(culController.agregarCultivosALista()));
-        System.out.println("\nDigite el identificador del cultivo que desea añadir");
-        int indice = reader.nextInt();
 
         System.out.println("Digite el identinficador");
         reader.nextLine();
         String identificador = reader.nextLine();
 
-        plantController.buscarCultivo(idx).addCultivoInPlantacion(identificador, culController.buscarCultivoPorPosicion(indice));
+        plantController.buscarCultivo(idx).addCultivoInPlantacion(identificador, culController.buscarCultivoPorPosicion(idx2));
     }
 
     public void cultivoEnCofre(){
@@ -189,6 +197,16 @@ public class Main {
     public void ordenarPlantaciones(){
         plantController.ordenarPlantaciones(plantController.getPlantaciones());
         System.out.println(plantController.listarPlantaciones());
+    }
+
+    public void mostrarEstacion(){
+        simulacion.mostrarMesYEstacion();
+    }
+
+    public void guardar(){
+        cofController.saveCofres();
+        culController.saveCultivos();
+        plantController.savePlantaciones();
     }
 
 }
